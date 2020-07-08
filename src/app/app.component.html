@@ -1,0 +1,13 @@
+<nav *ngIf ="!ocultarNav">
+  <ul>
+    <li><a (click)="persona()" >Crear Persona</a></li>
+    <li><a (click)="viewpersona()" >Mirar Personas</a></li>
+    <li><a (click)="trabajo()" >Crear Tipo de Trabajo</a></li>
+    <li><a (click)="viewtrabajo()" >Mirar Tipo de Trabajo</a></li>
+    <li><a (click)="exp()" >Subir Experiencia Laboral</a></li>
+    <li><a (click)="viewexp()" >Mirar Experiencia Laboral</a></li>
+    <li><button type="button" (click)="onCerrarSesion()">Cerrar Sesion</button></li>
+  </ul>
+</nav>
+<ngx-spinner></ngx-spinner>
+<router-outlet></router-outlet>

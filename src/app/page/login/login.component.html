@@ -1,0 +1,7 @@
+<form [formGroup]="form">
+    <p>usuario</p>
+    <input type="text" formControlName="usuario"><br>
+    <p>Contraseña</p>
+    <input type="password" formControlName="clave">
+    <button type="button" (click)='onLoginClick()' [disabled]="!form.valid">Iniciar Sesion</button>
+</form>

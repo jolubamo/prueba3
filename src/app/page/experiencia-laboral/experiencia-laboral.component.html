@@ -1,0 +1,114 @@
+<form [formGroup]="form">
+  <br>
+  <div>
+    <mat-form-field color="accent" appearance="fill">
+      <mat-label>Inherited calendar color</mat-label>
+      <input matInput formControlName="fechaInicio" [matDatepicker]="picker1">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="fill">
+      <mat-label>Custom calendar color</mat-label>
+      <input matInput formControlName="fechaFin" [matDatepicker]="picker2">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2 color="primary"></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+
+  <div>
+    <h4>Codigo</h4>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="variable2" formControlName="perCodigo">
+        <mat-option [value]="p.codigo" *ngFor="let p of lstPercodigo"> {{p.nombre}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p> Selected code: {{variable2}} </p>
+
+  </div>
+  <div>
+    <h4>Codigo</h4>
+    <mat-form-field appearance="fill">
+      <mat-select [(ngModel)]="variable" formControlName="titCodigo">
+        <mat-option [value]="p.codigo" *ngFor="let p of lstTitcodigo"> {{p.nombre}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p> Selected code: {{variable}} </p>
+
+  </div>
+  <br>
+  <div>
+    <button [disabled]="!form.valid" (click)='clickenviar()' mat-fab color="primary">
+      <mat-icon>send</mat-icon>
+    </button>
+    <button mat-fab color="primary" (click)='onCancelar()' *ngIf="editar"
+      aria-label="Example icon button with a delete icon">
+      <mat-icon>cancel</mat-icon>
+    </button>
+    <button mat-fab color="primary" (click)='onEliminar()' *ngIf="editar"
+      aria-label="Example icon button with a delete icon">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</form><br>
+<a href="http://localhost:8080/api/experiencia-laboral/experiencia-pdf" target="blank">
+  <div class="example-button-container">
+    <button>
+      <mat-icon>print</mat-icon>
+    </button>
+  </div>
+</a>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef> Codigo. </th>
+      <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="fechaInicio">
+      <th mat-header-cell *matHeaderCellDef> Fecha de Inicio </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaInicio}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="fechaFin">
+      <th mat-header-cell *matHeaderCellDef> Fecha de Finalizacion </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaFin}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="titCodigo">
+      <th mat-header-cell *matHeaderCellDef> TitCodigo </th>
+      <td mat-cell *matCellDef="let element"> {{element.titCodigo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="perCodigo">
+      <th mat-header-cell *matHeaderCellDef> PerCodigo </th>
+      <td mat-cell *matCellDef="let element"> {{element.perCodigo}} </td>
+    </ng-container>
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef> Editar </th>
+      <td mat-cell *matCellDef="let element">
+        <div class="example-button-container">
+          <button mat-fab color="primary" (click)='onEditarClick(element)'
+            aria-label="Example icon button with a delete icon">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>

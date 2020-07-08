@@ -1,0 +1,8 @@
+<div id="cont2">
+    <h1>{{variable}}</h1>
+    <select *ngIf='ocultarSelect' [(ngModel)]="variable">
+        <option *ngFor="let p of lstPais">{{p.codigo}} - <strong>{{p.nombre}}</strong></option>
+    </select>
+    <br><br>
+    <button (click)='onocultarSelectClick()'>Ocultar Select</button>
+</div>
